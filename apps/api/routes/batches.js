@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 } });
 
 // ---- POST /api/batches — Register a new batch ----
-router.post("/", upload.single("photo"), async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const {
       beekeeperName,
