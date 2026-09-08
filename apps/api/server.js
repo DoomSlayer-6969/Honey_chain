@@ -10,16 +10,16 @@
  * Or:        npm run dev --workspace=@honey-chain/api
  */
 
-const express = require('express');
-const cors    = require('cors');
-const path    = require('path');
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
 
-const batchRoutes  = require('./routes/batches');
-const ledgerRoutes = require('./routes/ledger');
-const trustScoreRoutes = require('./routes/trustScore');
-const fairPriceRoutes = require('./routes/fairPrice');
+const batchRoutes = require("./routes/batches");
+const ledgerRoutes = require("./routes/ledger");
+const trustScoreRoutes = require("./routes/trustScore");
+const fairPriceRoutes = require("./routes/fairPrice");
 
-const app  = express();
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ---- Middleware ----
@@ -30,23 +30,32 @@ app.use(express.urlencoded({ extended: true }));
 // ---- Static file serving ----
 
 // Serve uploaded honey-batch photos at /photos/<filename>
-app.use('/photos', express.static(path.join(__dirname, '..', '..', 'data', 'photos')));
+app.use(
+  "/photos",
+  express.static(path.join(__dirname, "..", "..", "data", "photos")),
+);
 
 // ---- API Routes ----
-app.use('/api/batches', batchRoutes);
-app.use('/api/ledger',  ledgerRoutes);
-app.use('/api/trust-score', trustScoreRoutes);
-app.use('/api/fair-price', fairPriceRoutes);
+app.use("/api/batches", batchRoutes);
+app.use("/api/ledger", ledgerRoutes);
+app.use("/api/trust-score", trustScoreRoutes);
+app.use("/api/fair-price", fairPriceRoutes);
 
 // ---- API Fallback ----
-app.all('*', (req, res) => {
-  if (req.path.startsWith('/api')) {
-    res.status(404).json({ error: 'API endpoint not found' });
+app.all("*", (req, res) => {
+  if (req.path.startsWith("/api")) {
+    res.status(404).json({ error: "API endpoint not found" });
   }
 });
 
 // ---- Start server ----
 app.listen(PORT, () => {
-  console.log(`\n🍯 Honey Chain API server running at http://localhost:${PORT}`);
-  console.log(`   (Use Vite dev server at http://localhost:5173 for frontend)\n`);
+  console.log(
+    `\n🍯 Honey Chain API server running at http://localhost:${PORT}`,
+  );
+  console.log(
+    `   (Use Vite dev server at http://localhost:5173 for frontend)\n`,
+  );
 });
+
+export default app;
