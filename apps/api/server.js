@@ -49,13 +49,13 @@ app.all("*", (req, res) => {
 });
 
 // ---- Start server ----
-app.listen(PORT, () => {
-  console.log(
-    `\n🍯 Honey Chain API server running at http://localhost:${PORT}`,
-  );
-  console.log(
-    `   (Use Vite dev server at http://localhost:5173 for frontend)\n`,
-  );
-});
+// app.listen(PORT, () => {
+//   console.log(
+//     `\n🍯 Honey Chain API server running at http://localhost:${PORT}`,
+//   );
+//   console.log(
+//     `   (Use Vite dev server at http://localhost:5173 for frontend)\n`,
+//   );
+// });
 
 export default app;
